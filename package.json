@@ -13,5 +13,20 @@
     "express": "^4.12.4",
     "mongoose": "^4.0.5"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "description": "Basic example with MEAN stack technology",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidpa86/Beer-list---MEAN-stack.git"
+  },
+  "keywords": [
+    "MEAN",
+    "stack",
+    "beer",
+    "list"
+  ],
+  "bugs": {
+    "url": "https://github.com/davidpa86/Beer-list---MEAN-stack/issues"
+  },
+  "homepage": "https://github.com/davidpa86/Beer-list---MEAN-stack"
 }
