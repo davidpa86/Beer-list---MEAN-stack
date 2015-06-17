@@ -1,0 +1,20 @@
+{
+  "name": "MEAN_beer_list",
+  "version": "1.0.0",
+  "authors": [
+    "parrasdavid@gmail.com"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "public/libs"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "bootstrap": "~3.3.4"
+  }
+}
