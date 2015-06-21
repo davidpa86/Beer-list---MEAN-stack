@@ -1,4 +1,8 @@
 .flag {
-	height: 50px;
-	width: 75px;
+    height: 50px;
+    width: 75px;
+}
+
+.glyphicon.glyphicon-trash {
+    font-size: 20px;
 }

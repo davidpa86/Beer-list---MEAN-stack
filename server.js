@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 app.use(bodyParser.json());
 
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 app.use('/libs/', express.static(__dirname + '/public/libs/'));
@@ -24,20 +24,20 @@ app.get('/api/beers', beersController.getAll);
 app.post('/api/beers', beersController.addBeer);
 app.delete('/api/beers', beersController.removeBeer);
 
-app.listen(3000, function () {
+app.listen(3000, function() {
     console.log("Server running in http://localhost:3000...");
 });
 
 
-mongoose.connect(dbConfig.url, function (err) {
-  if (err) {
-	  console.log ('ERROR connecting to: ' + dbConfig.url + '. ' + err);
-  } else {
-	  console.log ('Succeeded connected to: ' + dbConfig.url);
-	  if (dbConfig.includeInitData){
-		  beersController.checkIfEmpty(dbConfig);
-	  }
-  }
+mongoose.connect(dbConfig.url, function(err) {
+    if (err) {
+        console.log('ERROR connecting to: ' + dbConfig.url + '. ' + err);
+    } else {
+        console.log('Succeeded connected to: ' + dbConfig.url);
+        if (dbConfig.includeInitData) {
+            beersController.checkIfEmpty(dbConfig);
+        }
+    }
 });
 
 /**var MongoClient = require('mongodb').MongoClient;
