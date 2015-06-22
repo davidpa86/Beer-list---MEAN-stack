@@ -3,6 +3,7 @@
         var vmBeer = this;
         vmBeer.selected_country = "";
         vmBeer.beers = [];
+		vmBeer.alerts = {error : [], success : []};
 
         var init = function() {
             vmBeer.sorter = "name";
@@ -20,8 +21,15 @@
             });
             promiseModal.result.then(function() {
                 console.log("Removing " + beer.name);
-                beerListFactory.removeBeer(beer);
-                //TODO : REmove vmBeer.beers.push(vmBeer.newBeer);
+                beerListFactory.removeBeer(beer, vmBeer.alerts);
+                for (var i=0; i<vmBeer.beers.length; ++i)
+				{
+					if (vmBeer.beers[i].name === beer.name)
+					{
+						vmBeer.beers.splice(i, 1);
+						break;
+					}
+				}
             }, function() {
                 console.log("Cancel removing");
             });
@@ -38,8 +46,7 @@
                 }
             });
             promiseModal.result.then(function() {
-                console.log("Adding " + vmBeer.newBeer.name);
-                beerListFactory.postBeer(vmBeer.newBeer);
+                beerListFactory.postBeer(vmBeer.newBeer, vmBeer.alerts);
                 vmBeer.beers.push(vmBeer.newBeer);
             }, function() {
                 //console.log();
