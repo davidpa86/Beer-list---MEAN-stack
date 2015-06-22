@@ -22,7 +22,7 @@ app.use('/views/', express.static(__dirname + '/public/views/'));
 //REST API
 app.get('/api/beers', beersController.getAll);
 app.post('/api/beers', beersController.addBeer);
-app.delete('/api/beers', beersController.removeBeer);
+app.delete('/api/beers/:name', beersController.removeBeer);
 
 app.listen(3000, function() {
     console.log("Server running in http://localhost:3000...");

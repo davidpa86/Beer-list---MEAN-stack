@@ -18,10 +18,11 @@ module.exports = {
     },
 
     removeBeer: function(req, res) {
+        var name = req.params.name;
         Beer.remove({
-            name: req.body.name
+            name: name
         }, function(err, results) {
-            console.log("Removing beer... " + req.body.name);
+            console.log("Removing beer... " + name);
             res.json(results);
         });
     },

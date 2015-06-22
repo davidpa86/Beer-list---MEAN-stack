@@ -2,18 +2,24 @@
 <html ng-app="appBeerList">
 
 <head>
-    <script src="libs/angular/angular.js"></script>
     <script src="libs/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
     <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="libs/angular/angular.js"></script>
+    <script src="libs/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <title>Beer list</title>
 </head>
 
 <body ng-controller="beerListController as vmBeer">
     <section class="container">
         <div class="row row-fluid">
-            <h2>Beer list</h2>
+            <div class="col-md-4" name="search-by-name">
+                <h2>Beer list</h2>
+            </div>
+        </div>
+        <div class="row row-fluid">
             <div class="col-md-4" name="search-by-name">
                 <input type="search" class="form-control" placeholder="Search beer..." ng-model="filter_input"></input>
             </div>
@@ -30,9 +36,8 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" ng-click="vmBeer.addBeer()">
                     <i class="glyphicon glyphicon-plus"></i>
-                    <span class="icon-beer"></span>
                 </button>
             </div>
         </div>
@@ -47,7 +52,7 @@
                     <p>{{beer.alcohol}}%</p>
                 </div>
                 <div class="col-md-2">
-                    <button class="glyphicon glyphicon-trash btn btn-default" ng-click="vmBeer.deleteBeer()"></button>
+                    <button class="glyphicon glyphicon-trash btn btn-default" ng-click="vmBeer.removeBeer(beer)"></button>
                 </div>
                 <br/>
             </div>
@@ -56,6 +61,8 @@
     <script src="js/app.js"></script>
     <script src="js/beerListFactory.js"></script>
     <script src="js/beerListController.js"></script>
+    <script src="js/addNewBeerController.js"></script>
+    <script src="js/removeBeerController.js"></script>
 </body>
 
 </html>
