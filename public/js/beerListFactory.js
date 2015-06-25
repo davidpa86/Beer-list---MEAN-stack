@@ -5,10 +5,10 @@
         Factory.getAllBeers = function() {
             return $http.get(url);
         }
-        Factory.postBeer = function(data) {
+        Factory.postBeer = function(data, alertServiceFactory) {
             $http.post(url, data)
                 .success(function(data, status, headers, config) {
-                    //TODO : Show message UI
+                    alertServiceFactory.addAlert(data.name+" saved to DB","alert-success");
                     console.log("Saved in DB");
                 }).
             error(function(data, status, headers, config) {
@@ -16,10 +16,11 @@
                 console.log("Error " + status);
             });
         }
-        Factory.removeBeer = function(data) {
-            $http.delete(url + data.name)
+        Factory.removeBeer = function(data, alertServiceFactory) {
+            var name = data.name;
+			$http.delete(url + name)
                 .success(function(data, status, headers, config) {
-                    //TODO : Show message UI
+                    alertServiceFactory.addAlert(name+" removed to DB","alert-danger");
                     console.log("Removed from DB");
                 }).
             error(function(data, status, headers, config) {

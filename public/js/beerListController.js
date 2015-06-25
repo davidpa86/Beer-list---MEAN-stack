@@ -1,9 +1,9 @@
 (function() {
-    var BeerController = function(beerListFactory, $modal) {
+    var BeerController = function(beerListFactory, $modal,alertServiceFactory) {
         var vmBeer = this;
         vmBeer.selected_country = "";
         vmBeer.beers = [];
-		vmBeer.alerts = {error : [], success : []};
+		vmBeer.alerts = alertServiceFactory.alerts;
 
         var init = function() {
             vmBeer.sorter = "name";
@@ -21,7 +21,7 @@
             });
             promiseModal.result.then(function() {
                 console.log("Removing " + beer.name);
-                beerListFactory.removeBeer(beer, vmBeer.alerts);
+                beerListFactory.removeBeer(beer, alertServiceFactory);
                 for (var i=0; i<vmBeer.beers.length; ++i)
 				{
 					if (vmBeer.beers[i].name === beer.name)
@@ -46,15 +46,18 @@
                 }
             });
             promiseModal.result.then(function() {
-                beerListFactory.postBeer(vmBeer.newBeer, vmBeer.alerts);
+                beerListFactory.postBeer(vmBeer.newBeer, alertServiceFactory);
                 vmBeer.beers.push(vmBeer.newBeer);
             }, function() {
                 //console.log();
             });
         };
+		vmBeer.removeAlerts = function(type){
+			alertServiceFactory.removeAlerts(type);
+		};
 
         init.call(this);
     };
 
-    angular.module("appBeerList").controller("beerListController", ["beerListFactory", "$modal", BeerController]);
+    angular.module("appBeerList").controller("beerListController", ["beerListFactory", "$modal", "alertServiceFactory", BeerController]);
 }());
