@@ -16,6 +16,6 @@
                 }
             }
         };
-    }
+    };
     angular.module("appBeerList").factory("alertServiceFactory", [alertServiceFactory]);
 }());

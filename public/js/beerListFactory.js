@@ -4,7 +4,7 @@
         var url = "http://localhost:3000/api/beers/";
         Factory.getAllBeers = function() {
             return $http.get(url);
-        }
+        };
         Factory.postBeer = function(data, alertServiceFactory) {
             $http.post(url, data)
                 .success(function(data, status, headers, config) {
@@ -15,7 +15,7 @@
                 //TODO : Show message UI
                 console.log("Error " + status);
             });
-        }
+        };
         Factory.removeBeer = function(data, alertServiceFactory) {
             var name = data.name;
 			$http.delete(url + name)
@@ -27,7 +27,7 @@
                 //TODO : Show message UI
                 console.log("Error " + status);
             });
-        }
+        };
 
         return Factory;
     };

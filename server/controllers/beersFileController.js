@@ -6,15 +6,16 @@ module.exports = function(Beer) {
     module.includeInit = function(file) {
         fs.readFile(file, "utf8", function(error, data) {
             var beers = JSON.parse(data);
+            var fnOnSave = function(err, result) {
+                if (err) {
+                    console.log("Error adding " + beers[i] + " " + err);
+                } else {
+                    console.log("Added " + result);
+                }
+            };
             for (var i = 0; i < beers.length; ++i) {
                 var beer = new Beer(beers[i]);
-                beer.save(function(err, result) {
-                    if (err) {
-                        console.log("Error adding " + beers[i] + " " + err);
-                    } else {
-                        console.log("Added " + result);
-                    }
-                });
+                beer.save(fnOnSave);
             }
         });
     };
